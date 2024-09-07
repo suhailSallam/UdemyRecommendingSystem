@@ -52,12 +52,15 @@ with st.sidebar:
     }
 
     [data-testid="stSidebar"] {
-        background-color: #e3f2fd; /* I changed the old transparent color to solve overlap between sidebar and main canvas */
+        background-color: #e3f2fd; /* Soft blue */
         margin-top: var(--header-height);
         color: blue;
         position: fixed; /* Ensure sidebar is fixed */
         width: 250px; /* Fixed width */
+        height: 100vh; /* Full height of the viewport */
         z-index: 999; /* Ensure it stays on top */
+        overflow-y: auto; /* Enable scrolling for overflow content */
+        padding-bottom: 2rem; /* Extra padding at the bottom */
     }
 
     [data-testid="stToolbar"]::before {
@@ -96,6 +99,7 @@ with st.sidebar:
     }
     </style>
     """, unsafe_allow_html=True)
+
 st.markdown("""
 <style>
 div[data-testid="metric-container"] {
