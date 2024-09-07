@@ -23,53 +23,79 @@ st.sidebar.write('     - Related cources to the course selected')
 selectMB = st.sidebar.selectbox('Select Analysis Main Tab', ['Story_telling','Overview','Subjects','Profit', 'Price_Categories_per_Subject', 'Subscribers_per_Subject', 'Courses_per_Subject_per_Year','Recommened_Related_Courses','Recomendations'], key=11)
 
 with st.sidebar:
-      st.markdown("""
-  <style>
-  :root {
-    --header-height: 50px;
-  }
-  .css-z5fcl4 {
-    padding-top: 2.5rem;
-    padding-bottom: 5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    color: blue;
-  }
+    st.markdown("""
+    <style>
+    :root {
+      --header-height: 50px;
+    }
+    .css-z5fcl4 {
+      padding-top: 2.5rem;
+      padding-bottom: 5rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      color: blue;
+    }
     .css-1544g2n {
-    padding: 0rem 0.5rem 1.0rem;
-  }
-  [data-testid="stHeader"] {
-      background-image: url(/app/static/icons8-astrolabe-64.png);
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-orgin: content-box;
-      color: blue;
-  }
-  
-  [data-testid="stHeader"] {
-      background-color: rgba(28, 131, 225, 0.1);
-      padding-top: var(--header-height);
-  }
-  
-  [data-testid="stSidebar"] {
-      background-color: rgba(28, 131, 225, 0.1);
-      margin-top: var(--header-height);
-      color: blue;
-  }
-  
-  [data-testid="stToolbar"]::before {
-      content: "UDEMY - Course Analysis Recommending System";
-  }
-  
-  [data-testid="collapsedControl"] {
-      margin-top: var(--header-height);
-  }
-  
-  [data-testid="stSidebarUserContent"] {
-      padding-top: 2rem;
-  }
-  </style>
-  """, unsafe_allow_html=True)
+      padding: 0rem 0.5rem 1.0rem;
+    }
+    [data-testid="stHeader"] {
+        background-image: url(/app/static/icons8-astrolabe-64.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-origin: content-box;
+        color: blue;
+    }
+
+    [data-testid="stHeader"] {
+        background-color: rgba(28, 131, 225, 0.1);
+        padding-top: var(--header-height);
+    }
+
+    [data-testid="stSidebar"] {
+        background-color: #e3f2fd; /* I changed the old transparent color to solve overlap between sidebar and main canvas */
+        margin-top: var(--header-height);
+        color: blue;
+        position: fixed; /* Ensure sidebar is fixed */
+        width: 250px; /* Fixed width */
+        z-index: 999; /* Ensure it stays on top */
+    }
+
+    [data-testid="stToolbar"]::before {
+        content: "UDEMY - Course Analysis Recommending System";
+    }
+
+    [data-testid="collapsedControl"] {
+        margin-top: var(--header-height);
+    }
+
+    [data-testid="stSidebarUserContent"] {
+        padding-top: 2rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        [data-testid="stSidebar"] {
+            width: 100%; /* Sidebar takes full width on small screens */
+            height: auto; /* Adjust height for small screens */
+            position: relative; /* Sidebar is not fixed on small screens */
+            z-index: 1000; /* Ensure it stays on top */
+        }
+
+        .css-z5fcl4 {
+            padding-left: 1rem; /* Adjust padding for smaller screens */
+            padding-right: 1rem;
+        }
+
+        [data-testid="stHeader"] {
+            padding-top: 1rem; /* Adjust header padding */
+        }
+
+        [data-testid="stToolbar"] {
+            font-size: 1.2rem; /* Adjust font size for the toolbar */
+        }
+    }
+    </style>
+    """, unsafe_allow_html=True)
 st.markdown("""
 <style>
 div[data-testid="metric-container"] {
